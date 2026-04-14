@@ -1,4 +1,4 @@
-package com.development.models.finance;
+package com.solvd.development.models.finance;
 
 public class Orders {
     private int id;

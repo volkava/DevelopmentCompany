@@ -1,4 +1,4 @@
-package com.development.models.entities;
+package com.solvd.development.models.entities;
 
 public class ProjectTeams {
     private int id;

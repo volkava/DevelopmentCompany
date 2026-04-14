@@ -1,5 +1,5 @@
 package org.example.dao;
-import com.development.models.entities.Workers;
+import com.solvd.development.models.entities.Workers;
 import org.example.interfaces.IWorkersDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

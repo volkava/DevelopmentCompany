@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import com.development.models.inventory.Machines;
+import com.solvd.development.models.inventory.Machines;
 import org.example.interfaces.IMachinesDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

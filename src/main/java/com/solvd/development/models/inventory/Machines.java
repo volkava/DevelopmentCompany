@@ -1,4 +1,4 @@
-package com.development.models.inventory;
+package com.solvd.development.models.inventory;
 
 public class Machines {
     private int id;

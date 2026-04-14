@@ -1,4 +1,4 @@
-package com.development.models.buildings;
+package com.solvd.development.models.buildings;
 
 import java.util.Date;
 

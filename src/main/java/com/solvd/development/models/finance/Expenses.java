@@ -1,4 +1,4 @@
-package com.development.models.finance;
+package com.solvd.development.models.finance;
 
 import java.math.BigDecimal;
 import java.util.Date;

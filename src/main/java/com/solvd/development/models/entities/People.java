@@ -1,4 +1,4 @@
-package com.development.models.entities;
+package com.solvd.development.models.entities;
 
 public abstract class People {
     private int id;

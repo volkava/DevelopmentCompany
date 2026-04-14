@@ -1,4 +1,4 @@
-package com.development.models.buildings;
+package com.solvd.development.models.buildings;
 
 public class Units {
     private int id;
