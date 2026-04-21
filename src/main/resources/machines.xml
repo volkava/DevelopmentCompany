@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<machines>
+    <machine id="101">
+        <machineName>Caterpillar 320 Excavator</machineName>
+        <contractorId>500</contractorId>
+        <currentProjectId>10</currentProjectId>
+        <isCompanyProperty>true</isCompanyProperty>
+        <isAssigned>true</isAssigned>
+        <plateNumber>TX-9981</plateNumber>
+        <serialNumber>CAT320-AX992</serialNumber>
+        <value>125000.00</value>
+    </machine>
+    <machine id="102">
+        <machineName>John Deere 850L Bulldozer</machineName>
+        <contractorId>501</contractorId>
+        <currentProjectId>12</currentProjectId>
+        <isCompanyProperty>true</isCompanyProperty>
+        <isAssigned>false</isAssigned>
+        <plateNumber>TX-4420</plateNumber>
+        <serialNumber>JD850-B7721</serialNumber>
+        <value>185000.00</value>
+    </machine>
+    <machine id="103">
+        <machineName>Bobcat S76 Skid-Steer</machineName>
+        <contractorId>505</contractorId>
+        <currentProjectId>10</currentProjectId>
+        <isCompanyProperty>false</isCompanyProperty>
+        <isAssigned>true</isAssigned>
+        <plateNumber>TX-1123</plateNumber>
+        <serialNumber>BCS76-S1102</serialNumber>
+        <value>45000.00</value>
+    </machine>
+    <machine id="104">
+        <machineName>Komatsu PC210LC</machineName>
+        <contractorId>500</contractorId>
+        <currentProjectId>15</currentProjectId>
+        <isCompanyProperty>true</isCompanyProperty>
+        <isAssigned>true</isAssigned>
+        <plateNumber>TX-8832</plateNumber>
+        <serialNumber>KOM210-K554</serialNumber>
+        <value>140000.00</value>
+    </machine>
+    <machine id="105">
+        <machineName>Volvo L120H Wheel Loader</machineName>
+        <contractorId>510</contractorId>
+        <currentProjectId>18</currentProjectId>
+        <isCompanyProperty>true</isCompanyProperty>
+        <isAssigned>false</isAssigned>
+        <plateNumber>TX-0051</plateNumber>
+        <serialNumber>VOL120-V229</serialNumber>
+        <value>210000.00</value>
+    </machine>
+</machines>
