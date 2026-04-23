@@ -1,7 +1,13 @@
 package com.solvd.developmentCompany.models.inventory;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "machine")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Machines {
+    @XmlAttribute
     private Long id;
+    @XmlElement
     private String machineName;
     private Long contractorId;
     private Long currentProjectId;

@@ -1,10 +1,13 @@
 package com.solvd.developmentCompany.main;
 
 import com.solvd.developmentCompany.models.inventory.Machines;
+import com.solvd.developmentCompany.models.inventory.MachinesListWrapper;
+import com.solvd.developmentCompany.utils.JaxbParserUtil;
 import com.solvd.developmentCompany.utils.StaxParserUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
@@ -28,11 +31,11 @@ public class Main {
                 return;
             }
 
-            // 2. Parse the data using Stax
+
             logger.info("Parsing machines.xml using StAX...");
             List<Machines> parsedMachines = StaxParserUtil.parseMachines(is);
 
-            // 3. Log the results
+
             if (parsedMachines.isEmpty()) {
                 logger.warn("No machines were found in the XML file.");
             } else {
@@ -49,5 +52,37 @@ public class Main {
         }
 
         logger.info("Application execution finished.");
+
+        try {
+            InputStream is = Main.class.getClassLoader().getResourceAsStream("machines.xml");
+            MachinesListWrapper wrapper = JaxbParserUtil.unmarshal(is, MachinesListWrapper.class);
+
+            for (Machines m : wrapper.getMachines()) {
+                logger.info("JAXB Parsed: {}", m.getMachineName());
+            }
+        } catch (Exception e) {
+            logger.error("Failed to parse XML using JAXB: ", e);
+        }
+
+        try {
+            Machines newMachine = new Machines();
+            newMachine.setId(999L);
+            newMachine.setMachineName("Giant Crane");
+            newMachine.setSerialNumber("CRANE-001");
+
+            MachinesListWrapper wrapper = new MachinesListWrapper();
+            wrapper.setMachines(List.of(newMachine));
+
+            File outputFile = new File("src/main/resources/exported_machines.xml");
+
+            logger.info("Marshalling Java objects to XML...");
+            JaxbParserUtil.marshal(wrapper, outputFile);
+            logger.info("XML file created at: {}", outputFile.getAbsolutePath());
+
+        } catch (Exception e) {
+            logger.error("Marshalling failed: ", e);
+        }
     }
+
+
 }

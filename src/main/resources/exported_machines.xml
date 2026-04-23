@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<machines>
+    <machine id="999">
+        <machineName>Giant Crane</machineName>
+        <isCompanyProperty>false</isCompanyProperty>
+        <isAssigned>false</isAssigned>
+        <serialNumber>CRANE-001</serialNumber>
+    </machine>
+</machines>
