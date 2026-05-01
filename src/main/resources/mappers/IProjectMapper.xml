@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.developmentCompany.db.mappers.IProjectMapper">
+
+    <resultMap id="ProjectResultMap" type="com.solvd.developmentCompany.models.buildings.Project">
+        <id property="id" column="id" />
+        <result property="projectName" column="project_name" />
+        <result property="buildingId" column="building_id" />
+        <result property="startDate" column="start_date" />
+        <result property="estimatedFinishDate" column="estimated_finish_date" />
+        <result property="projectLeadId" column="project_lead_id" />
+        <result property="status" column="status" />
+        <result property="completionDate" column="completion_date" />
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO Project (project_name, building_id, start_date, estimated_finish_date, project_lead_id, status, completion_date)
+        VALUES (#{projectName}, #{buildingId}, #{startDate}, #{estimatedFinishDate}, #{projectLeadId}, #{status}, #{completionDate})
+    </insert>
+
+    <select id="getById" resultMap="ProjectResultMap">
+        SELECT id, project_name, building_id, start_date, estimated_finish_date, project_lead_id, status, completion_date
+        FROM Project
+        WHERE id = #{id}
+    </select>
+
+    <update id="update">
+        UPDATE Project
+        SET project_name = #{projectName},
+        building_id = #{buildingId},
+        start_date = #{startDate},
+        estimated_finish_date = #{estimatedFinishDate},
+        project_lead_id = #{projectLeadId},
+        status = #{status},
+        completion_date = #{completionDate}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM Project WHERE id = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="ProjectResultMap">
+        SELECT * FROM Project
+    </select>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.developmentCompany.db.mappers.ITeamsMapper">
+
+    <resultMap id="TeamResultMap" type="com.solvd.developmentCompany.models.entities.Teams">
+        <id property="id" column="id" />
+        <result property="teamName" column="team_name" />
+        <result property="specialty" column="specialty" />
+        <result property="teamLeadId" column="team_lead_id" />
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO Teams (team_name, specialty, team_lead_id)
+        VALUES (#{teamName}, #{specialty}, #{teamLeadId})
+    </insert>
+
+    <select id="getById" resultMap="TeamResultMap">
+        SELECT id, team_name, specialty, team_lead_id
+        FROM Teams
+        WHERE id = #{id}
+    </select>
+
+    <select id="getAll" resultMap="TeamResultMap">
+        SELECT id, team_name, specialty, team_lead_id FROM Teams
+    </select>
+
+    <update id="update">
+        UPDATE Teams
+        SET team_name = #{teamName},
+        specialty = #{specialty},
+        team_lead_id = #{teamLeadId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM Teams WHERE id = #{id}
+    </delete>
+
+</mapper>

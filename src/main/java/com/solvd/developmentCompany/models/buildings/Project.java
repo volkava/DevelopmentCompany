@@ -3,12 +3,12 @@ package com.solvd.developmentCompany.models.buildings;
 import java.util.Date;
 
 public class Project {
-    private int id;
+    private Long id;
     private String projectName;
-    private int buildingId;
+    private Long buildingId;
     private Date startDate;
     private Date estimatedFinishDate;
-    private int projectLeadId;
+    private Long projectLeadId;
     private String status;
     private Date completionDate;
 
@@ -23,11 +23,11 @@ public class Project {
                 '}';
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,11 +39,11 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public int getBuildingId() {
+    public Long getBuildingId() {
         return buildingId;
     }
 
-    public void setBuildingId(int buildingId) {
+    public void setBuildingId(Long buildingId) {
         this.buildingId = buildingId;
     }
 
@@ -63,11 +63,11 @@ public class Project {
         this.estimatedFinishDate = estimatedFinishDate;
     }
 
-    public int getProjectLeadId() {
+    public Long getProjectLeadId() {
         return projectLeadId;
     }
 
-    public void setProjectLeadId(int projectLeadId) {
+    public void setProjectLeadId(Long projectLeadId) {
         this.projectLeadId = projectLeadId;
     }
 

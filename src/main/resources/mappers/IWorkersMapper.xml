@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.developmentCompany.db.mappers.IWorkersMapper">
+
+    <resultMap id="WorkerResultMap" type="com.solvd.developmentCompany.models.entities.Workers">
+        <id property="id" column="worker_pk" />
+
+        <result property="personId" column="person_link" />
+        <result property="firstName" column="first_name" />
+        <result property="lastName" column="last_name" />
+        <result property="email" column="email" />
+        <result property="phone" column="phone" />
+        <result property="jobTitle" column="job_title" />
+        <result property="salary" column="salary" />
+        <result property="teamId" column="team_id" />
+    </resultMap>
+
+    <select id="getById" resultMap="WorkerResultMap">
+        SELECT
+        w.id AS worker_pk,
+        w.person_id AS person_link,
+        p.first_name,
+        p.last_name,
+        p.email,
+        p.phone,
+        w.job_title,
+        w.salary,
+        w.team_id
+        FROM Workers w
+        JOIN People p ON w.person_id = p.id
+        WHERE w.id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO Workers (person_id, job_title, salary, team_id)
+        VALUES (#{personId}, #{jobTitle}, #{salary}, #{teamId})
+    </insert>
+
+    <update id="update">
+        UPDATE Workers
+        SET job_title = #{jobTitle},
+        salary = #{salary},
+        team_id = #{teamId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM Workers WHERE id = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="WorkerResultMap">
+        SELECT
+        w.id AS worker_pk,
+        w.person_id AS person_link,
+        p.first_name, p.last_name, p.email, p.phone,
+        w.job_title, w.salary, w.team_id
+        FROM Workers w
+        JOIN People p ON w.person_id = p.id
+    </select>
+
+</mapper>

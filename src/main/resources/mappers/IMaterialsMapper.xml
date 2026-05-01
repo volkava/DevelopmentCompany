@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.developmentCompany.db.mappers.IMaterialsMapper">
+
+    <resultMap id="MaterialResultMap" type="com.solvd.developmentCompany.models.inventory.Materials">
+        <id property="id" column="id" />
+        <result property="materialName" column="material_name" />
+        <result property="quantity" column="quantity" />
+        <result property="unit" column="unit" />
+        <result property="pricePerUnit" column="price_per_unit" />
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO Materials (material_name, quantity, unit, price_per_unit)
+        VALUES (#{materialName}, #{quantity}, #{unit}, #{pricePerUnit})
+    </insert>
+
+    <select id="getById" resultMap="MaterialResultMap">
+        SELECT id, material_name, quantity, unit, price_per_unit
+        FROM Materials
+        WHERE id = #{id}
+    </select>
+
+    <select id="getAll" resultMap="MaterialResultMap">
+        SELECT id, material_name, quantity, unit, price_per_unit
+        FROM Materials
+    </select>
+
+    <update id="update">
+        UPDATE Materials
+        SET material_name = #{materialName},
+        quantity = #{quantity},
+        unit = #{unit},
+        price_per_unit = #{pricePerUnit}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM Materials WHERE id = #{id}
+    </delete>
+
+</mapper>

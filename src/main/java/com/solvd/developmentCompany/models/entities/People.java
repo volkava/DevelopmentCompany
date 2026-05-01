@@ -1,7 +1,7 @@
 package com.solvd.developmentCompany.models.entities;
 
 public abstract class People {
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -18,11 +18,11 @@ public abstract class People {
                 '}';
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

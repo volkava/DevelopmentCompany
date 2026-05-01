@@ -1,0 +1,25 @@
+[ {
+  "currentProjectId" : null,
+  "isCompanyProperty" : false,
+  "isAssigned" : false,
+  "plateNumber" : null,
+  "serialNumber" : null,
+  "value" : null,
+  "companyProperty" : false,
+  "assigned" : false,
+  "id" : 501,
+  "machine_name" : "Mack TerraPro Concrete Mixer",
+  "contractor_id" : null
+}, {
+  "currentProjectId" : null,
+  "isCompanyProperty" : false,
+  "isAssigned" : false,
+  "plateNumber" : null,
+  "serialNumber" : null,
+  "value" : null,
+  "companyProperty" : false,
+  "assigned" : false,
+  "id" : 502,
+  "machine_name" : "Liebherr 280 EC-H 12",
+  "contractor_id" : null
+} ]

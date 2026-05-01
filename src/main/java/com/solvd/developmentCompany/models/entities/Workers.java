@@ -1,6 +1,8 @@
 package com.solvd.developmentCompany.models.entities;
 
 public class Workers extends People {
+    private Long id;
+    private Long personId;
     private String jobTitle;
     private double salary;
     private int teamId;
@@ -16,6 +18,24 @@ public class Workers extends People {
                 "jobTitle='" + jobTitle + '\'' +
                 ", salary=" + salary +
                 "} " + super.toString();
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Long personId) {
+        this.personId = personId;
+        super.setId(personId);
     }
 
     public String getJobTitle() {

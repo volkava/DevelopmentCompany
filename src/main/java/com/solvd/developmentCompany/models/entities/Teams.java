@@ -23,7 +23,7 @@ public class Teams {
         return teamLeadId;
     }
 
-    public void setTeamLeadId(int teamLeadId) {
+    public void setTeamLeadId(Long teamLeadId) {
         this.teamLeadId = teamLeadId;
     }
 

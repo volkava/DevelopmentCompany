@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.developmentCompany.db.mappers.IPeopleMapper">
+
+    <resultMap id="PersonResultMap" type="com.solvd.developmentCompany.models.entities.People">
+        <id property="id" column="id" />
+        <result property="firstName" column="first_name" />
+        <result property="lastName" column="last_name" />
+        <result property="email" column="email" />
+        <result property="phone" column="phone" />
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO People (first_name, last_name, email, phone)
+        VALUES (#{firstName}, #{lastName}, #{email}, #{phone})
+    </insert>
+
+    <select id="getById" resultMap="PersonResultMap">
+        SELECT id, first_name, last_name, email, phone
+        FROM People
+        WHERE id = #{id}
+    </select>
+
+    <update id="update">
+        UPDATE People
+        SET first_name = #{firstName},
+        last_name = #{lastName},
+        email = #{email},
+        phone = #{phone}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM People WHERE id = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="PersonResultMap">
+        SELECT id, first_name, last_name, email, phone FROM People
+    </select>
+
+</mapper>

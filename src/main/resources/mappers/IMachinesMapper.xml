@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.developmentCompany.db.mappers.IMachineMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO machines (
+        machine_name,
+        contractor_id,
+        current_project_id,
+        is_company_property,
+        is_assigned,
+        plate_number,
+        serial_number,
+        value
+        )
+        VALUES (
+        #{machineName},
+        #{contractorId},
+        #{currentProjectId},
+        #{isCompanyProperty},
+        #{isAssigned},
+        #{plateNumber},
+        #{serialNumber},
+        #{value}
+        )
+    </insert>
+
+    <select id="getById" resultType="com.solvd.developmentCompany.models.inventory.Machines">
+        SELECT
+        id,
+        machine_name AS machineName,
+        contractor_id AS contractorId,
+        current_project_id AS currentProjectId,
+        is_company_property AS isCompanyProperty,
+        is_assigned AS isAssigned,
+        plate_number AS plateNumber,
+        serial_number AS serialNumber,
+        value
+        FROM machines
+        WHERE id = #{id}
+    </select>
+
+    <update id="update">
+        UPDATE machines
+        SET
+        machine_name = #{machineName},
+        contractor_id = #{contractorId},
+        current_project_id = #{currentProjectId},
+        is_company_property = #{isCompanyProperty},
+        is_assigned = #{isAssigned},
+        plate_number = #{plateNumber},
+        serial_number = #{serialNumber},
+        value = #{value}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM machines WHERE id = #{id}
+    </delete>
+
+    <select id="getAll" resultType="com.solvd.developmentCompany.models.inventory.Machines">
+        SELECT
+        id,
+        machine_name AS machineName,
+        contractor_id AS contractorId,
+        current_project_id AS currentProjectId,
+        is_company_property AS isCompanyProperty,
+        is_assigned AS isAssigned,
+        plate_number AS plateNumber,
+        serial_number AS serialNumber,
+        value
+        FROM machines
+    </select>
+
+</mapper>

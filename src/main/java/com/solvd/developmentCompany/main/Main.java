@@ -2,12 +2,14 @@ package com.solvd.developmentCompany.main;
 
 import com.solvd.developmentCompany.models.inventory.Machines;
 import com.solvd.developmentCompany.models.inventory.MachinesListWrapper;
+import com.solvd.developmentCompany.utils.JacksonParserUtil;
 import com.solvd.developmentCompany.utils.JaxbParserUtil;
 import com.solvd.developmentCompany.utils.StaxParserUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -81,6 +83,45 @@ public class Main {
 
         } catch (Exception e) {
             logger.error("Marshalling failed: ", e);
+        }
+
+        try {
+
+            Machines concreteMixer = new Machines();
+            concreteMixer.setId(501L);
+            concreteMixer.setMachineName("Mack TerraPro Concrete Mixer");
+
+            Machines towerCrane = new Machines();
+            towerCrane.setId(502L);
+            towerCrane.setMachineName("Liebherr 280 EC-H 12");
+
+            List<Machines> newMachines = List.of(concreteMixer, towerCrane);
+
+            File outputFile = new File("src/main/resources/machines.json");
+            JacksonParserUtil.serialize(newMachines, outputFile);
+
+            logger.info("Generated new JSON file with machines: {} and {}",
+                    concreteMixer.getMachineName(), towerCrane.getMachineName());
+
+        } catch (IOException e) {
+            logger.error("Failed to generate JSON: ", e);
+        }
+
+        try {
+
+            InputStream is = Main.class.getClassLoader().getResourceAsStream("machines.json");
+
+            Machines[] machinesArray = JacksonParserUtil.deserialize(is, Machines[].class);
+
+            logger.info("Jackson read {} machines from JSON.", machinesArray.length);
+
+            File outputFile = new File("src/main/resources/exported_machines.json");
+            JacksonParserUtil.serialize(machinesArray, outputFile);
+
+            logger.info("Jackson successfully serialized data to: {}", outputFile.getName());
+
+        } catch (IOException e) {
+            logger.error("Jackson error: ", e);
         }
     }
 

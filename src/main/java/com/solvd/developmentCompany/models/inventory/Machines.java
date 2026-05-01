@@ -1,14 +1,21 @@
 package com.solvd.developmentCompany.models.inventory;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.xml.bind.annotation.*;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @XmlRootElement(name = "machine")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Machines {
     @XmlAttribute
+    @JsonProperty("id")
     private Long id;
     @XmlElement
+    @JsonProperty("machine_name")
     private String machineName;
+    @JsonProperty("contractor_id")
     private Long contractorId;
     private Long currentProjectId;
     private boolean isCompanyProperty;
