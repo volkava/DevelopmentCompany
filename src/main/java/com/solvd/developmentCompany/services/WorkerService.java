@@ -19,9 +19,11 @@ public class WorkerService {
             try {
                 IPeopleMapper peopleMapper = session.getMapper(IPeopleMapper.class);
                 IWorkersMapper workersMapper = session.getMapper(IWorkersMapper.class);
+
                 peopleMapper.insert(worker);
                 worker.setPersonId(worker.getId());
                 workersMapper.insert(worker);
+
                 session.commit();
             } catch (Exception e) {
                 session.rollback();
@@ -35,12 +37,22 @@ public class WorkerService {
             try {
                 IPeopleMapper peopleMapper = session.getMapper(IPeopleMapper.class);
                 IWorkersMapper workersMapper = session.getMapper(IWorkersMapper.class);
+
                 peopleMapper.update(worker);
                 workersMapper.update(worker);
+
+                if (worker.getId() != null) {
+                    Workers check = workersMapper.getById(worker.getId());
+                    if (check == null) {
+                        throw new RuntimeException("Update target not found in database.");
+                    }
+                }
+
                 session.commit();
             } catch (Exception e) {
                 session.rollback();
-                throw new RuntimeException("Update failed. Data remains unchanged.", e);
+
+                throw new RuntimeException("Update failed: " + e.getMessage(), e);
             }
         }
     }

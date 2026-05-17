@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class ConnectionFactory {
-    private static SqlSessionFactory sqlSessionFactory;
+    public static SqlSessionFactory sqlSessionFactory;
 
     static {
         try (Reader reader = Resources.getResourceAsReader("mybatis-config.xml")) {

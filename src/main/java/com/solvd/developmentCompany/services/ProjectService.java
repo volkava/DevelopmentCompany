@@ -34,4 +34,25 @@ public class ProjectService {
             return mapper.getAll();
         }
     }
+
+    public void updateProject(Project project) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
+            IProjectMapper mapper = session.getMapper(IProjectMapper.class);
+            mapper.update(project);
+
+            if (project.getId() != null) {
+                Project check = mapper.getById(project.getId());
+                if (check == null) {
+                    throw new RuntimeException("Update target project not found.");
+                }
+            }
+        }
+    }
+
+    public void deleteProject(Long id) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
+            IProjectMapper mapper = session.getMapper(IProjectMapper.class);
+            mapper.delete(id);
+        }
+    }
 }

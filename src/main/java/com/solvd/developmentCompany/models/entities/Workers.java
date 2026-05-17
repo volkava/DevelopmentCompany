@@ -5,7 +5,7 @@ public class Workers extends People {
     private Long personId;
     private String jobTitle;
     private double salary;
-    private int teamId;
+    private Long teamId;
 
 
     public Workers() {
@@ -54,11 +54,11 @@ public class Workers extends People {
         this.salary = salary;
     }
 
-    public int getTeamId() {
+    public Long  getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(int teamId) {
+    public void setTeamId(Long teamId) {
         this.teamId = teamId;
     }
 

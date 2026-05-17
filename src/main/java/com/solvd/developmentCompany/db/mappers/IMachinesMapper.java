@@ -6,6 +6,7 @@ import java.util.List;
 public interface IMachinesMapper {
     void insert(Machines machine);
     Machines getById(Long id);
+    Machines getByName(String machine_name);
     void update(Machines machine);
     void delete(Long id);
     List<Machines> getAll();

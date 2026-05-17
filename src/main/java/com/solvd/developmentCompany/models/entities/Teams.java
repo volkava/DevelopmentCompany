@@ -1,10 +1,10 @@
 package com.solvd.developmentCompany.models.entities;
 
 public class Teams {
-    private int id;
+    private Long id;
     private String teamName;
     private String specialty;
-    private int teamLeadId;
+    private Long teamLeadId;
 
     public Teams() {
     }
@@ -19,7 +19,7 @@ public class Teams {
                 '}';
     }
 
-    public int getTeamLeadId() {
+    public Long getTeamLeadId() {
         return teamLeadId;
     }
 
@@ -43,11 +43,11 @@ public class Teams {
         this.teamName = teamName;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

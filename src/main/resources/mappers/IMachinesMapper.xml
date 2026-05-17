@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.solvd.developmentCompany.db.mappers.IMachineMapper">
+<mapper namespace="com.solvd.developmentCompany.db.mappers.IMachinesMapper">
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO machines (
@@ -39,6 +39,21 @@
         value
         FROM machines
         WHERE id = #{id}
+    </select>
+
+    <select id="getByName" resultType="com.solvd.developmentCompany.models.inventory.Machines">
+        SELECT
+        id,
+        machine_name AS machineName,
+        contractor_id AS contractorId,
+        current_project_id AS currentProjectId,
+        is_company_property AS isCompanyProperty,
+        is_assigned AS isAssigned,
+        plate_number AS plateNumber,
+        serial_number AS serialNumber,
+        value
+        FROM machines
+        WHERE machine_name = #{machineName}
     </select>
 
     <update id="update">

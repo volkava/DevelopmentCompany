@@ -6,9 +6,9 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/DevelopmentCompany"/>
-                <property name="vvolkava" value="root"/>
-                <property name="password" value=""/>
+                <property name="url" value="jdbc:mysql://localhost:3306/dev_company_db"/>
+                <property name="username" value="root"/>
+                <property name="password" value="1veloniebieski"/>
             </dataSource>
         </environment>
     </environments>
