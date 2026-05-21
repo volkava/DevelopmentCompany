@@ -1,8 +1,8 @@
 package com.solvd.developmentCompany.services;
 
 import com.solvd.developmentCompany.utils.ConnectionFactory;
-import com.solvd.developmentCompany.db.mappers.ITeamsMapper;
-import com.solvd.developmentCompany.db.mappers.IWorkersMapper;
+import com.solvd.developmentCompany.interfaces.ITeamsDAO;
+import com.solvd.developmentCompany.interfaces.IWorkersDAO;
 import com.solvd.developmentCompany.models.entities.Teams;
 import com.solvd.developmentCompany.models.entities.Workers;
 import org.apache.ibatis.session.SqlSession;
@@ -19,14 +19,14 @@ public class TeamService {
     public void createTeamWithLeader(Teams team, Long leaderWorkerId) {
         try (SqlSession session = sqlSessionFactory.openSession(false)) {
             try {
-                ITeamsMapper teamsMapper = session.getMapper(ITeamsMapper.class);
-                IWorkersMapper workersMapper = session.getMapper(IWorkersMapper.class);
+                ITeamsDAO teamsDAO = session.getMapper(ITeamsDAO.class);
+                IWorkersDAO workersDAO = session.getMapper(IWorkersDAO.class);
                 team.setTeamLeadId(leaderWorkerId);
-                teamsMapper.insert(team);
-                Workers leader = workersMapper.getById(leaderWorkerId);
+                teamsDAO.save(team);
+                Workers leader = workersDAO.getById(leaderWorkerId);
                 if (leader != null) {
                     leader.setTeamId(team.getId());
-                    workersMapper.update(leader);
+                    workersDAO.update(leader);
                 }
 
                 session.commit();
@@ -39,7 +39,7 @@ public class TeamService {
 
     public Teams getTeamDetails(Long id) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.getMapper(ITeamsMapper.class).getById(id);
+            return session.getMapper(ITeamsDAO.class).getById(id);
         }
     }
 }

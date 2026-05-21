@@ -1,7 +1,7 @@
 package com.solvd.developmentCompany.services;
 
-import com.solvd.developmentCompany.db.mappers.IPeopleMapper;
-import com.solvd.developmentCompany.db.mappers.IWorkersMapper;
+import com.solvd.developmentCompany.interfaces.IPeopleDAO;
+import com.solvd.developmentCompany.interfaces.IWorkersDAO;
 import com.solvd.developmentCompany.models.entities.Workers;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,12 +17,12 @@ public class WorkerService {
     public void createWorker(Workers worker) {
         try (SqlSession session = sqlSessionFactory.openSession(false)) { // false = manual commit
             try {
-                IPeopleMapper peopleMapper = session.getMapper(IPeopleMapper.class);
-                IWorkersMapper workersMapper = session.getMapper(IWorkersMapper.class);
+                IPeopleDAO peopleDAO = session.getMapper(IPeopleDAO.class);
+                IWorkersDAO workersDAO = session.getMapper(IWorkersDAO.class);
 
-                peopleMapper.insert(worker);
+                peopleDAO.save(worker);
                 worker.setPersonId(worker.getId());
-                workersMapper.insert(worker);
+                workersDAO.save(worker);
 
                 session.commit();
             } catch (Exception e) {
@@ -35,14 +35,14 @@ public class WorkerService {
     public void updateWorker(Workers worker) {
         try (SqlSession session = sqlSessionFactory.openSession(false)) {
             try {
-                IPeopleMapper peopleMapper = session.getMapper(IPeopleMapper.class);
-                IWorkersMapper workersMapper = session.getMapper(IWorkersMapper.class);
+                IPeopleDAO peopleDAO = session.getMapper(IPeopleDAO.class);
+                IWorkersDAO workersDAO = session.getMapper(IWorkersDAO.class);
 
-                peopleMapper.update(worker);
-                workersMapper.update(worker);
+                peopleDAO.update(worker);
+                workersDAO.update(worker);
 
                 if (worker.getId() != null) {
-                    Workers check = workersMapper.getById(worker.getId());
+                    Workers check = workersDAO.getById(worker.getId());
                     if (check == null) {
                         throw new RuntimeException("Update target not found in database.");
                     }
@@ -60,10 +60,10 @@ public class WorkerService {
     public void deleteWorker(Long workerId, Long personId) {
         try (SqlSession session = sqlSessionFactory.openSession(false)) {
             try {
-                IWorkersMapper workersMapper = session.getMapper(IWorkersMapper.class);
-                IPeopleMapper peopleMapper = session.getMapper(IPeopleMapper.class);
-                workersMapper.delete(workerId);
-                peopleMapper.delete(personId);
+                IWorkersDAO workersDAO = session.getMapper(IWorkersDAO.class);
+                IPeopleDAO peopleDAO = session.getMapper(IPeopleDAO.class);
+                workersDAO.delete(workerId);
+                peopleDAO.delete(personId);
                 session.commit();
 
             } catch (Exception e) {

@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.io.Reader;
+
+
 public class WorkerServiceTest {
 
     private WorkerService workerService;
@@ -126,10 +128,10 @@ public class WorkerServiceTest {
         SoftAssert softAssert = new SoftAssert();
 
         try (org.apache.ibatis.session.SqlSession session = sqlSessionFactory.openSession()) {
-            com.solvd.developmentCompany.db.mappers.IWorkersMapper workersMapper = session.getMapper(com.solvd.developmentCompany.db.mappers.IWorkersMapper.class);
-            com.solvd.developmentCompany.db.mappers.IPeopleMapper peopleMapper = session.getMapper(com.solvd.developmentCompany.db.mappers.IPeopleMapper.class);
+            com.solvd.developmentCompany.interfaces.IWorkersDAO workersDAO = session.getMapper(com.solvd.developmentCompany.interfaces.IWorkersDAO.class);
+            com.solvd.developmentCompany.interfaces.IPeopleDAO peopleMapper = session.getMapper(com.solvd.developmentCompany.interfaces.IPeopleDAO.class);
 
-            Workers deletedWorker = workersMapper.getById(assignedId);
+            Workers deletedWorker = workersDAO.getById(assignedId);
             com.solvd.developmentCompany.models.entities.People deletedPerson = peopleMapper.getById(associatedPersonId);
 
             softAssert.assertNull(deletedWorker, "Worker record should be completely removed from the Workers table.");

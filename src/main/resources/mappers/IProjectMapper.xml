@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.solvd.developmentCompany.db.mappers.IProjectMapper">
+<mapper namespace="com.solvd.developmentCompany.interfaces.IProjectDAO">
 
     <resultMap id="ProjectResultMap" type="com.solvd.developmentCompany.models.buildings.Project">
         <id property="id" column="id" />
@@ -14,7 +14,7 @@
         <result property="completionDate" column="completion_date" />
     </resultMap>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO Project (project_name, building_id, start_date, estimated_finish_date, project_lead_id, status, completion_date)
         VALUES (#{projectName}, #{buildingId}, #{startDate}, #{estimatedFinishDate}, #{projectLeadId}, #{status}, #{completionDate})
     </insert>

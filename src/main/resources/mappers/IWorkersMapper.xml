@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.solvd.developmentCompany.db.mappers.IWorkersMapper">
+<mapper namespace="com.solvd.developmentCompany.interfaces.IWorkersDAO">
 
     <resultMap id="WorkerResultMap" type="com.solvd.developmentCompany.models.entities.Workers">
         <id property="id" column="worker_pk" />
@@ -32,7 +32,7 @@
         WHERE w.id = #{id}
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO Workers (person_id, job_title, salary, team_id)
         VALUES (#{personId}, #{jobTitle}, #{salary}, #{teamId})
     </insert>
